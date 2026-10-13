@@ -3,107 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0b1322">
+  <meta name="theme-color" content="#101827">
   <title>Keeish Chat</title>
 
 <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
+[hidden] {
+      display: none !important;
+    }
+
+:root {
+      font-family: Arial, sans-serif;
+      color: #edf2fc;
+      background: #080f1d;
+      color-scheme: dark;
+    }
 
 body {
       margin: 0;
       min-height: 100dvh;
-      font-family: Arial, sans-serif;
-      color: #eef4ff;
       background:
-        radial-gradient(circle at top left, #123441, transparent 45%),
-        #080e1a;
+        radial-gradient(circle at top left, #153b42, transparent 50%),
+        #080f1d;
     }
 
-button, input, textarea { font: inherit; }
-    button { border: 0; cursor: pointer; }
-    [hidden] { display: none !important; }
-
-.center {
-      min-height: 100dvh;
-      display: grid;
-      place-items: center;
-      padding: 20px;
+button,
+    input,
+    textarea {
+      font: inherit;
     }
 
-.card {
-      width: min(100%, 430px);
-      padding: 30px;
-      border: 1px solid #293b54;
-      border-radius: 26px;
-      background: #111c2ded;
-      box-shadow: 0 25px 80px #0008;
-    }
-
-.logo {
-      width: 70px;
-      height: 70px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 20px;
-      border-radius: 22px;
-      background: #61e1c2;
-      color: #09231e;
-      font-size: 40px;
-      font-weight: bold;
-    }
-
-.label {
-      color: #61e1c2;
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-h1 {
-      margin: 18px 0 10px;
-      font-size: 36px;
-      line-height: 1.08;
-    }
-
-h2 {
-      margin: 0 0 8px;
-    }
-
-.description, .small {
-      color: #a9b7ca;
-      line-height: 1.6;
-    }
-
-label {
-      display: block;
-      margin: 18px 0 8px;
-      color: #c8d2e2;
-      font-size: 14px;
-    }
-
-input, textarea {
-      width: 100%;
-      padding: 14px;
-      border: 1px solid #34445d;
-      border-radius: 14px;
-      outline: none;
-      background: #0c1524;
-      color: white;
-      font-size: 16px;
-    }
-
-input:focus, textarea:focus {
-      border-color: #61e1c2;
-    }
-
-.primary {
-      width: 100%;
-      min-height: 52px;
-      margin-top: 23px;
-      border-radius: 14px;
-      background: #61e1c2;
-      color: #06251e;
+button {
+      min-height: 44px;
+      padding: 11px 14px;
+      border: 0;
+      border-radius: 12px;
+      cursor: pointer;
+      background: #67e8c4;
+      color: #08271f;
       font-weight: bold;
     }
 
@@ -112,43 +52,131 @@ button:disabled {
       opacity: .5;
     }
 
-.error {
-      min-height: 22px;
-      margin: 13px 0 0;
-      color: #ffb1b1;
+.secondary {
+      background: #25364e;
+      color: #e7eef8;
+      font-size: 12px;
+    }
+
+.danger {
+      background: #ff5570;
+      color: white;
+    }
+
+input,
+    textarea {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #35465e;
+      border-radius: 13px;
+      outline: none;
+      background: #0b1525;
+      color: white;
+      font-size: 16px;
+    }
+
+input:focus,
+    textarea:focus {
+      border-color: #67e8c4;
+    }
+
+label {
+      display: block;
+      margin: 18px 0 8px;
+      color: #c8d3e2;
       font-size: 14px;
+    }
+
+.muted {
+      color: #9daec2;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+.error {
+      min-height: 21px;
+      color: #ffb4b4;
+      font-size: 13px;
       line-height: 1.5;
     }
 
-.chat {
-      width: min(100%, 900px);
+.brand {
+      display: grid;
+      place-items: center;
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: #67e8c4;
+      color: #09271f;
+      font-size: 30px;
+      font-weight: 900;
+    }
+
+.card {
+      width: min(100%, 430px);
+      padding: 30px;
+      border: 1px solid #2a3b51;
+      border-radius: 26px;
+      background: #101b2ceb;
+      box-shadow: 0 25px 90px #0008;
+    }
+
+#loginScreen {
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+
+.eyebrow {
+      margin-top: 20px;
+      color: #67e8c4;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+h1 {
+      margin: 17px 0 10px;
+      font-size: 35px;
+      line-height: 1.05;
+    }
+
+h2 {
+      margin: 0 0 10px;
+    }
+
+#loginForm button {
+      width: 100%;
+      margin-top: 22px;
+    }
+
+#chatScreen {
+      width: min(100%, 980px);
       height: 100dvh;
       margin: auto;
       display: flex;
       flex-direction: column;
-      background: #0d1727;
-      border-inline: 1px solid #27384f;
+      background: #0d1625;
+      border-inline: 1px solid #273447;
     }
 
 header {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: max(16px, env(safe-area-inset-top)) 15px 16px;
-      background: #121f32;
-      border-bottom: 1px solid #293b54;
+      gap: 9px;
+      padding: max(14px, env(safe-area-inset-top)) 13px 14px;
+      background: #111e30;
+      border-bottom: 1px solid #273447;
     }
 
-.chat-logo {
+header .brand {
       width: 43px;
       height: 43px;
-      display: grid;
-      place-items: center;
       border-radius: 14px;
-      background: #61e1c2;
-      color: #09231e;
-      font-size: 26px;
-      font-weight: bold;
+      font-size: 23px;
+      flex-shrink: 0;
     }
 
 .heading {
@@ -158,85 +186,88 @@ header {
 
 .heading strong {
       display: block;
+      font-size: 16px;
     }
 
-.status {
+#connection,
+    #userSummary {
       display: block;
-      margin-top: 4px;
-      color: #99aac0;
-      font-size: 12px;
+      margin-top: 3px;
+      overflow: hidden;
+      color: #a7b7cb;
+      font-size: 11px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
-.header-button {
-      padding: 10px 11px;
-      border-radius: 10px;
-      background: #26364d;
-      color: white;
-      font-size: 12px;
-    }
-
-.room-info {
-      padding: 9px;
-      border-bottom: 1px solid #223249;
-      color: #9aaac0;
+.room-note {
+      padding: 8px;
+      border-bottom: 1px solid #202f42;
+      color: #a6b5ca;
       text-align: center;
       font-size: 12px;
     }
 
 #messages {
       flex: 1;
+      min-height: 0;
       overflow-y: auto;
-      padding: 20px 14px;
+      padding: 20px 14px 80px;
+      overscroll-behavior: contain;
     }
 
 .empty {
-      padding: 50px 10px;
-      color: #9aaac0;
+      padding: 55px 10px;
+      color: #91a3ba;
       text-align: center;
     }
 
 .message {
+      position: relative;
       width: fit-content;
-      max-width: 86%;
-      margin-bottom: 13px;
+      max-width: 84%;
+      margin-bottom: 14px;
       padding: 11px 14px;
       border-radius: 17px 17px 17px 5px;
-      background: #1b2b42;
+      background: #1b2a40;
       overflow-wrap: anywhere;
+      user-select: none;
+      touch-action: manipulation;
     }
 
 .message.mine {
       margin-left: auto;
       border-radius: 17px 17px 5px 17px;
-      background: #155044;
+      background: #164b42;
     }
 
 .sender {
       margin-bottom: 5px;
-      color: #8ce7d0;
+      color: #8de6cc;
       font-size: 11px;
       font-weight: bold;
     }
 
-.message-text {
+.body {
       white-space: pre-wrap;
       line-height: 1.5;
+      font-size: 15px;
     }
 
 .time {
       margin-top: 6px;
-      color: #aec0d1;
+      color: #a9b8cb;
       text-align: right;
       font-size: 10px;
     }
 
 footer {
-      padding: 10px 13px max(13px, env(safe-area-inset-bottom));
-      background: #121f32;
-      border-top: 1px solid #293b54;
+      padding: 8px 12px max(12px, env(safe-area-inset-bottom));
+      background: #111e30;
+      border-top: 1px solid #273447;
     }
 
-form.composer {
+#composer {
       display: flex;
       align-items: flex-end;
       gap: 9px;
@@ -244,134 +275,369 @@ form.composer {
 
 textarea {
       min-height: 52px;
-      max-height: 130px;
+      max-height: 140px;
       resize: none;
     }
 
-.send {
+#sendButton {
       min-width: 68px;
       height: 52px;
-      border-radius: 13px;
-      background: #61e1c2;
-      color: #06251e;
-      font-weight: bold;
     }
 
-.modal {
+/* Unsend overlay */
+    .unsend-overlay {
+      position: absolute;
+      z-index: 10;
+      right: 4px;
+      bottom: -58px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px;
+      border: 1px solid #43546c;
+      border-radius: 15px;
+      background: #16243a;
+      box-shadow: 0 10px 30px #000b;
+      animation: overlayIn .18s ease-out;
+    }
+
+.unsend-overlay::before {
+      content: "";
+      position: absolute;
+      top: -7px;
+      right: 22px;
+      width: 13px;
+      height: 13px;
+      border-top: 1px solid #43546c;
+      border-left: 1px solid #43546c;
+      background: #16243a;
+      transform: rotate(45deg);
+    }
+
+.unsend-button,
+    .cancel-unsend-button {
+      min-height: 37px;
+      padding: 8px 11px;
+      border-radius: 10px;
+      font-size: 12px;
+    }
+
+.unsend-button {
+      background: #ff5570;
+      color: white;
+    }
+
+.cancel-unsend-button {
+      background: #2a3d57;
+      color: white;
+    }
+
+@keyframes overlayIn {
+      from {
+        opacity: 0;
+        transform: translateY(7px) scale(.95);
+      }
+
+to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+/* Modals */
+    .modal {
       position: fixed;
       inset: 0;
-      z-index: 10;
+      z-index: 50;
       display: grid;
       place-items: center;
       padding: 20px;
-      background: #0009;
+      background: #000a;
     }
 
-.modal .card {
-      box-shadow: 0 25px 80px #000;
+.modal-card {
+      width: min(100%, 450px);
+      max-height: 86dvh;
+      overflow-y: auto;
+      padding: 23px;
+      border: 1px solid #354860;
+      border-radius: 22px;
+      background: #111e30;
+      box-shadow: 0 25px 90px #000;
     }
 
-@media (max-width: 480px) {
-      .card { padding: 25px 21px; }
-      h1 { font-size: 33px; }
-      .message { max-width: 91%; }
+.modal-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+.modal-actions button {
+      flex: 1;
+    }
+
+.info-row {
+      margin: 14px 0;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #2a3b52;
+    }
+
+.info-label {
+      margin-bottom: 5px;
+      color: #91a3ba;
+      font-size: 12px;
+    }
+
+.info-value {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      line-height: 1.5;
+    }
+
+#usersList {
+      display: grid;
+      gap: 9px;
+      margin-top: 16px;
+    }
+
+.user-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 11px;
+      border-radius: 12px;
+      background: #192a40;
+    }
+
+.user-status {
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+.active {
+      color: #67e8c4;
+    }
+
+.inactive {
+      color: #a6b5ca;
+    }
+
+@media (max-width: 520px) {
+      .card {
+        padding: 25px 21px;
+      }
+
+h1 {
+        font-size: 32px;
+      }
+
+header {
+        gap: 6px;
+      }
+
+header .secondary {
+        padding: 8px 7px;
+        font-size: 10px;
+      }
+
+.message {
+        max-width: 91%;
+      }
     }
   </style>
 </head>
 
 <body>
 
-<!-- Login -->
-  <main id="loginPage" class="center">
+<!-- Login screen -->
+  <main id="loginScreen">
     <section class="card">
-      <div class="logo">k</div>
-      <div class="label">Keeish · Chat</div>
+      <div class="brand">k</div>
+
+<div class="eyebrow">Keeish · Chat</div>
 
 <h1>Your people.<br>Your space.</h1>
 
-<p class="description">
-        Sign in with your existing account to join the conversation.
+<p class="muted">
+        Sign in with your existing Firebase account to join the conversation.
       </p>
 
 <form id="loginForm">
         <label for="email">Email address</label>
-        <input id="email" type="email" autocomplete="username"
-               placeholder="you@example.com" required>
+        <input
+          id="email"
+          type="email"
+          autocomplete="username"
+          placeholder="you@example.com"
+          required
+        >
 
 <label for="password">Password</label>
-        <input id="password" type="password"
-               autocomplete="current-password"
-               placeholder="Enter your password" required>
+        <input
+          id="password"
+          type="password"
+          autocomplete="current-password"
+          placeholder="Enter your password"
+          required
+        >
 
-<button id="loginButton" class="primary" disabled>
+<button id="loginButton" type="submit" disabled>
           Loading Firebase…
         </button>
 
 <p id="loginError" class="error"></p>
       </form>
 
-<p class="small">
-        Use your existing Firebase account. No account creation is available here.
+<p class="muted">
+        Use your existing account. No sign-up is available here.
       </p>
     </section>
   </main>
 
-<!-- Chat -->
-  <section id="chatPage" class="chat" hidden>
+<!-- Chat screen -->
+  <section id="chatScreen" hidden>
     <header>
-      <div class="chat-logo">k</div>
+      <div class="brand">k</div>
 
 <div class="heading">
         <strong>Keeish Chat</strong>
-        <span id="status" class="status">Connecting…</span>
+        <span id="connection">Connecting…</span>
+        <span id="userSummary">0 active · 0 inactive · 0 total</span>
       </div>
 
-<button id="editNameButton" class="header-button">
-        Edit name
+<button id="usersButton" class="secondary" type="button">
+        Users
       </button>
 
-<button id="logoutButton" class="header-button">
+<button id="editNameButton" class="secondary" type="button">
+        Name
+      </button>
+
+<button id="logoutButton" class="secondary" type="button">
         Logout
       </button>
     </header>
 
-<div class="room-info">Realtime shared chat</div>
+<div class="room-note">
+      Tap a message for info · Hold your own message for unsend
+    </div>
 
-<div id="messages">
+<div id="messages" aria-live="polite">
       <div class="empty">Loading messages…</div>
     </div>
 
 <footer>
       <p id="chatError" class="error"></p>
 
-<form id="composer" class="composer">
-        <textarea id="messageInput" maxlength="2000"
-                  placeholder="Write a message…" required></textarea>
-        <button id="sendButton" class="send" disabled>Send</button>
+<form id="composer">
+        <textarea
+          id="messageInput"
+          maxlength="2000"
+          rows="1"
+          placeholder="Write a message…"
+          required
+        ></textarea>
+
+<button id="sendButton" type="submit" disabled>
+          Send
+        </button>
       </form>
     </footer>
   </section>
 
 <!-- Name modal -->
   <div id="nameModal" class="modal" hidden>
-    <section class="card">
+    <section class="modal-card">
       <h2 id="nameTitle">Choose your chatting name</h2>
 
-<p class="description">
-        This name will be visible to other people in the chat.
+<p class="muted">
+        This name will be visible to other chat members.
       </p>
 
 <form id="nameForm">
-        <label for="chatName">Chatting name</label>
-        <input id="chatName" maxlength="30"
-               placeholder="Enter your name" required>
-
-<button id="saveNameButton" class="primary">
-          Save name
-        </button>
+        <label for="chatNameInput">Chatting name</label>
+        <input
+          id="chatNameInput"
+          maxlength="30"
+          placeholder="Enter your name"
+          required
+        >
 
 <p id="nameError" class="error"></p>
+
+<div class="modal-actions">
+          <button
+            id="cancelNameButton"
+            class="secondary"
+            type="button"
+          >
+            Cancel
+          </button>
+
+<button id="saveNameButton" type="submit">
+            Save name
+          </button>
+        </div>
       </form>
+    </section>
+  </div>
+
+<!-- Users modal -->
+  <div id="usersModal" class="modal" hidden>
+    <section class="modal-card">
+      <h2>Chat users</h2>
+
+<p id="usersCount" class="muted"></p>
+
+<div id="usersList"></div>
+
+<div class="modal-actions">
+        <button
+          id="closeUsersButton"
+          class="secondary"
+          type="button"
+        >
+          Close
+        </button>
+      </div>
+    </section>
+  </div>
+
+<!-- Message information modal -->
+  <div id="infoModal" class="modal" hidden>
+    <section class="modal-card">
+      <h2>Message information</h2>
+
+<div class="info-row">
+        <div class="info-label">Sender</div>
+        <div id="infoSender" class="info-value"></div>
+      </div>
+
+<div class="info-row">
+        <div class="info-label">Message</div>
+        <div id="infoText" class="info-value"></div>
+      </div>
+
+<div class="info-row">
+        <div class="info-label">Sent time</div>
+        <div id="infoSent" class="info-value"></div>
+      </div>
+
+<div class="info-row">
+        <div class="info-label">Seen time</div>
+        <div id="infoSeen" class="info-value"></div>
+      </div>
+
+<div class="modal-actions">
+        <button
+          id="closeInfoButton"
+          class="secondary"
+          type="button"
+        >
+          Close
+        </button>
+      </div>
     </section>
   </div>
 
@@ -394,11 +660,14 @@ import {
       ref,
       get,
       set,
+      update,
+      remove,
       push,
       query,
       orderByChild,
       limitToLast,
       onValue,
+      onDisconnect,
       serverTimestamp
     } from
       "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
@@ -419,14 +688,43 @@ const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getDatabase(app);
 
+const BASE = "keeishChat";
+
 const $ = id => document.getElementById(id);
 
 let currentUser = null;
     let chatName = "";
     let connected = false;
     let messagesLoaded = false;
-    let stopMessages = null;
-    let stopConnection = null;
+
+let currentMessages = new Map();
+    let registeredUsers = {};
+    let presenceData = {};
+    let listeners = [];
+
+let presenceRef = null;
+    let longPressTimer = null;
+    let longPressTriggered = false;
+
+function formatTime(value) {
+      if (value === null || value === undefined) {
+        return "Not available";
+      }
+
+const date = new Date(value);
+
+if (Number.isNaN(date.getTime())) {
+        return "Not available";
+      }
+
+return date.toLocaleString([], {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+    }
 
 function updateSendButton() {
       $("sendButton").disabled =
@@ -437,119 +735,396 @@ function updateSendButton() {
         !$("messageInput").value.trim();
     }
 
-function showLoginError(error) {
-      console.error(error.code, error.message);
+function closeUnsendOverlay() {
+      const overlay = document.querySelector(".unsend-overlay");
 
-const errors = {
-        "auth/invalid-credential": "Invalid email or password.",
-        "auth/wrong-password": "Incorrect password.",
-        "auth/user-not-found": "No account exists with this email.",
-        "auth/invalid-email": "Enter a valid email address.",
-        "auth/user-disabled": "This account has been disabled.",
-        "auth/too-many-requests": "Too many attempts. Try again later.",
-        "auth/network-request-failed": "Check your internet connection.",
-        "auth/operation-not-allowed":
-          "Email/password login is not enabled in Firebase.",
-        "auth/unauthorized-domain":
-          "This website domain is not authorized in Firebase."
-      };
-
-$("loginError").textContent =
-        errors[error.code] || "Login failed: " + error.code;
+if (overlay) {
+        overlay.remove();
+      }
     }
 
-function closeListeners() {
-      if (stopMessages) stopMessages();
-      if (stopConnection) stopConnection();
-
-stopMessages = null;
-      stopConnection = null;
+function clearLongPress() {
+      if (longPressTimer) {
+        clearTimeout(longPressTimer);
+        longPressTimer = null;
+      }
     }
 
-function showNameModal(editing = false) {
-      $("nameTitle").textContent = editing
-        ? "Edit your chatting name"
-        : "Choose your chatting name";
-
-$("chatName").value = chatName;
-      $("nameError").textContent = "";
-      $("nameModal").hidden = false;
-      $("chatName").focus();
-    }
-
-function renderMessages(snapshot) {
-      $("messages").innerHTML = "";
-
-if (!snapshot.exists()) {
-        $("messages").innerHTML =
-          '<div class="empty">No messages yet. Say hello!</div>';
-
-messagesLoaded = true;
-        updateSendButton();
+function showUnsendOverlay(messageId, messageElement) {
+      if (!currentUser) {
         return;
       }
 
-snapshot.forEach(item => {
-        const message = item.val();
-        const mine = message.uid === currentUser.uid;
+const message = currentMessages.get(messageId);
 
-const box = document.createElement("article");
-        box.className = mine ? "message mine" : "message";
+if (!message || message.uid !== currentUser.uid) {
+        return;
+      }
 
-const sender = document.createElement("div");
-        sender.className = "sender";
-        sender.textContent = mine
-          ? "You"
-          : message.senderName || "Member";
+closeUnsendOverlay();
 
-const body = document.createElement("div");
-        body.className = "message-text";
-        body.textContent = message.text;
+const overlay = document.createElement("div");
+      overlay.className = "unsend-overlay";
 
-const time = document.createElement("div");
-        time.className = "time";
+const unsendButton = document.createElement("button");
+      unsendButton.type = "button";
+      unsendButton.className = "unsend-button";
+      unsendButton.textContent = "↩ Unsend";
 
-const date = new Date(message.createdAt);
-        if (!isNaN(date.getTime())) {
-          time.textContent = date.toLocaleString([], {
-            month: "short",
-            day: "numeric",
-            hour: "2-digit",
-            minute: "2-digit"
-          });
+const cancelButton = document.createElement("button");
+      cancelButton.type = "button";
+      cancelButton.className = "cancel-unsend-button";
+      cancelButton.textContent = "Cancel";
+
+unsendButton.addEventListener("click", async event => {
+        event.stopPropagation();
+
+unsendButton.disabled = true;
+        unsendButton.textContent = "Removing…";
+
+try {
+          await remove(
+            ref(db, `${BASE}/messages/${messageId}`)
+          );
+
+await remove(
+            ref(db, `${BASE}/messageSeen/${messageId}`)
+          );
+
+closeUnsendOverlay();
+        } catch (error) {
+          console.error("Unsend error:", error);
+
+unsendButton.disabled = false;
+          unsendButton.textContent = "↩ Unsend";
+
+$("chatError").textContent =
+            "MESSAGE HAS BEEN UNSENDED RA.";
         }
-
-box.append(sender, body, time);
-        $("messages").appendChild(box);
       });
 
-messagesLoaded = true;
-      $("messages").scrollTop = $("messages").scrollHeight;
-      updateSendButton();
+cancelButton.addEventListener("click", event => {
+        event.stopPropagation();
+        closeUnsendOverlay();
+      });
+
+overlay.append(unsendButton, cancelButton);
+      messageElement.appendChild(overlay);
     }
 
-async function loadChatName(user) {
-      const nameRef = ref(db, `keeishChat/users/${user.uid}/chatName`);
-      const snapshot = await get(nameRef);
-
-if (snapshot.exists() && String(snapshot.val()).trim()) {
-        chatName = String(snapshot.val()).trim();
-        startChat();
-      } else {
-        showNameModal(false);
+function addUnsendEvents(messageElement, messageId, message) {
+      if (!currentUser || message.uid !== currentUser.uid) {
+        return;
       }
+
+messageElement.addEventListener("contextmenu", event => {
+        event.preventDefault();
+        showUnsendOverlay(messageId, messageElement);
+      });
+
+messageElement.addEventListener("pointerdown", event => {
+        if (event.target.closest(".unsend-overlay")) {
+          return;
+        }
+
+clearLongPress();
+        longPressTriggered = false;
+
+longPressTimer = setTimeout(() => {
+          longPressTriggered = true;
+          showUnsendOverlay(messageId, messageElement);
+        }, 600);
+      });
+
+messageElement.addEventListener("pointerup", clearLongPress);
+      messageElement.addEventListener("pointercancel", clearLongPress);
+      messageElement.addEventListener("pointerleave", clearLongPress);
+    }
+
+function showMessageInfo(messageId, message) {
+      $("infoSender").textContent =
+        message.senderName ||
+        (message.uid === currentUser.uid
+          ? "You"
+          : "Unknown member");
+
+$("infoText").textContent = message.text || "";
+      $("infoSent").textContent = formatTime(message.createdAt);
+      $("infoSeen").textContent = "Loading…";
+
+$("infoModal").hidden = false;
+
+get(ref(db, `${BASE}/messageSeen/${messageId}`))
+        .then(snapshot => {
+          if (!snapshot.exists()) {
+            $("infoSeen").textContent = "Not seen yet";
+            return;
+          }
+
+const seenTimes = Object.values(snapshot.val() || {})
+            .filter(value => typeof value === "number")
+            .sort((a, b) => b - a);
+
+$("infoSeen").textContent = seenTimes.length
+            ? formatTime(seenTimes[0])
+            : "Not seen yet";
+        })
+        .catch(() => {
+          $("infoSeen").textContent = "Not available";
+        });
+    }
+
+function createMessageElement(messageId, message) {
+      const isMine =
+        currentUser &&
+        message.uid === currentUser.uid;
+
+const bubble = document.createElement("article");
+      bubble.className = isMine
+        ? "message mine"
+        : "message";
+
+const sender = document.createElement("div");
+      sender.className = "sender";
+      sender.textContent = isMine
+        ? "You"
+        : message.senderName || "Unknown member";
+
+const body = document.createElement("div");
+      body.className = "body";
+      body.textContent = message.text || "";
+
+const time = document.createElement("div");
+      time.className = "time";
+      time.textContent = formatTime(message.createdAt);
+
+bubble.append(sender, body, time);
+
+bubble.addEventListener("click", () => {
+        if (longPressTriggered) {
+          longPressTriggered = false;
+          return;
+        }
+
+showMessageInfo(messageId, message);
+      });
+
+addUnsendEvents(bubble, messageId, message);
+
+return bubble;
+    }
+
+function renderMessages(snapshot) {
+      currentMessages.clear();
+
+const fragment = document.createDocumentFragment();
+
+if (!snapshot.exists()) {
+        const empty = document.createElement("div");
+        empty.className = "empty";
+        empty.textContent = "No messages yet. Say hello!";
+        fragment.appendChild(empty);
+      } else {
+        snapshot.forEach(child => {
+          const message = child.val();
+
+currentMessages.set(child.key, message);
+
+fragment.appendChild(
+            createMessageElement(child.key, message)
+          );
+        });
+      }
+
+$("messages").replaceChildren(fragment);
+      $("messages").setAttribute("aria-busy", "false");
+      $("messages").scrollTop = $("messages").scrollHeight;
+
+messagesLoaded = true;
+      updateSendButton();
+
+// Mark messages from other users as seen.
+      snapshot.forEach(child => {
+        const message = child.val();
+
+if (
+          currentUser &&
+          message.uid !== currentUser.uid
+        ) {
+          set(
+            ref(
+              db,
+              `${BASE}/messageSeen/${child.key}/${currentUser.uid}`
+            ),
+            serverTimestamp()
+          ).catch(error => {
+            console.error("Seen update failed:", error);
+          });
+        }
+      });
+    }
+
+function renderUsers() {
+      const userIds = new Set([
+        ...Object.keys(registeredUsers),
+        ...Object.keys(presenceData)
+      ]);
+
+const users = [...userIds]
+        .map(uid => {
+          const savedUser = registeredUsers[uid] || {};
+          const presence = presenceData[uid] || {};
+
+return {
+            name:
+              savedUser.chatName ||
+              presence.chatName ||
+              "",
+            online: presence.online === true
+          };
+        })
+        .filter(user => user.name.trim())
+        .sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+
+const activeCount =
+        users.filter(user => user.online).length;
+
+const inactiveCount =
+        users.length - activeCount;
+
+const summary =
+        `${activeCount} active · ` +
+        `${inactiveCount} inactive · ` +
+        `${users.length} total`;
+
+$("userSummary").textContent = summary;
+      $("usersCount").textContent = summary;
+
+const list = $("usersList");
+      list.replaceChildren();
+
+if (!users.length) {
+        const empty = document.createElement("div");
+        empty.className = "muted";
+        empty.textContent = "No named users found.";
+        list.appendChild(empty);
+        return;
+      }
+
+users.forEach(user => {
+        const row = document.createElement("div");
+        row.className = "user-row";
+
+const name = document.createElement("strong");
+        name.textContent = user.name;
+
+const status = document.createElement("span");
+        status.className = user.online
+          ? "user-status active"
+          : "user-status inactive";
+
+status.textContent = user.online
+          ? "Active"
+          : "Inactive";
+
+row.append(name, status);
+        list.appendChild(row);
+      });
+    }
+
+async function setupPresence() {
+      presenceRef = ref(
+        db,
+        `${BASE}/presence/${currentUser.uid}`
+      );
+
+const offlinePresence = {
+        chatName,
+        online: false,
+        lastActive: serverTimestamp()
+      };
+
+await onDisconnect(presenceRef).set(offlinePresence);
+
+await set(presenceRef, {
+        chatName,
+        online: true,
+        lastActive: serverTimestamp()
+      });
+    }
+
+function cleanup() {
+      clearLongPress();
+      closeUnsendOverlay();
+
+listeners.forEach(stop => {
+        try {
+          stop();
+        } catch {
+          // Listener already stopped.
+        }
+      });
+
+listeners = [];
+
+if (presenceRef) {
+        update(presenceRef, {
+          online: false,
+          lastActive: serverTimestamp()
+        }).catch(() => {});
+      }
+
+presenceRef = null;
+      currentMessages.clear();
+      registeredUsers = {};
+      presenceData = {};
+      chatName = "";
+      connected = false;
+      messagesLoaded = false;
+
+$("messages").replaceChildren();
+      $("messageInput").value = "";
+      $("messageInput").style.height = "52px";
+      $("userSummary").textContent =
+        "0 active · 0 inactive · 0 total";
+
+updateSendButton();
+    }
+
+async function loadChatName() {
+      const nameSnapshot = await get(
+        ref(db, `${BASE}/users/${currentUser.uid}/chatName`)
+      );
+
+if (
+        nameSnapshot.exists() &&
+        String(nameSnapshot.val()).trim()
+      ) {
+        chatName = String(nameSnapshot.val()).trim();
+        startChat();
+        return;
+      }
+
+$("nameTitle").textContent =
+        "Choose your chatting name";
+
+$("chatNameInput").value = "";
+      $("cancelNameButton").hidden = true;
+      $("nameModal").hidden = false;
     }
 
 function startChat() {
-      $("loginPage").hidden = true;
-      $("chatPage").hidden = false;
-      $("status").textContent = "Connecting…";
+      $("loginScreen").hidden = true;
+      $("chatScreen").hidden = false;
 
-stopConnection = onValue(
+const connectionStop = onValue(
         ref(db, ".info/connected"),
         snapshot => {
           connected = snapshot.val() === true;
-          $("status").textContent = connected
+
+$("connection").textContent = connected
             ? `Connected as ${chatName}`
             : "Offline · Reconnecting…";
 
@@ -557,13 +1132,15 @@ updateSendButton();
         }
       );
 
+listeners.push(connectionStop);
+
 const messagesQuery = query(
-        ref(db, "keeishChat/messages"),
+        ref(db, `${BASE}/messages`),
         orderByChild("createdAt"),
         limitToLast(100)
       );
 
-stopMessages = onValue(
+const messagesStop = onValue(
         messagesQuery,
         renderMessages,
         error => {
@@ -572,6 +1149,41 @@ stopMessages = onValue(
             "Cannot load messages. Check your database rules.";
         }
       );
+
+listeners.push(messagesStop);
+
+// Loads every user who has a saved chatName.
+      // This is what displays inactive users.
+      const registeredUsersStop = onValue(
+        ref(db, `${BASE}/users`),
+        snapshot => {
+          registeredUsers = snapshot.val() || {};
+          renderUsers();
+        },
+        error => {
+          console.error(error);
+          $("chatError").textContent =
+            "Could not load registered users.";
+        }
+      );
+
+listeners.push(registeredUsersStop);
+
+const presenceStop = onValue(
+        ref(db, `${BASE}/presence`),
+        snapshot => {
+          presenceData = snapshot.val() || {};
+          renderUsers();
+        }
+      );
+
+listeners.push(presenceStop);
+
+setupPresence().catch(error => {
+        console.error(error);
+        $("chatError").textContent =
+          "Presence could not be started. Check your database rules.";
+      });
     }
 
 $("loginForm").addEventListener("submit", async event => {
@@ -588,7 +1200,32 @@ try {
           $("password").value
         );
       } catch (error) {
-        showLoginError(error);
+        console.error(error.code, error.message);
+
+const messages = {
+          "auth/invalid-credential":
+            "Invalid email or password.",
+          "auth/wrong-password":
+            "Incorrect password.",
+          "auth/user-not-found":
+            "No account exists with this email.",
+          "auth/invalid-email":
+            "Enter a valid email address.",
+          "auth/user-disabled":
+            "This account has been disabled.",
+          "auth/too-many-requests":
+            "Too many attempts. Try again later.",
+          "auth/network-request-failed":
+            "Check your internet connection.",
+          "auth/operation-not-allowed":
+            "Email/password login is not enabled in Firebase.",
+          "auth/unauthorized-domain":
+            "This website domain is not authorized in Firebase."
+        };
+
+$("loginError").textContent =
+          messages[error.code] ||
+          `Login failed: ${error.code || "unknown-error"}`;
       } finally {
         $("loginButton").disabled = false;
         $("loginButton").textContent = "Sign in";
@@ -598,7 +1235,7 @@ try {
 $("nameForm").addEventListener("submit", async event => {
       event.preventDefault();
 
-const name = $("chatName").value.trim();
+const name = $("chatNameInput").value.trim();
 
 if (name.length < 2 || name.length > 30) {
         $("nameError").textContent =
@@ -611,20 +1248,28 @@ $("saveNameButton").disabled = true;
 
 try {
         await set(
-          ref(db, `keeishChat/users/${currentUser.uid}/chatName`),
+          ref(db, `${BASE}/users/${currentUser.uid}/chatName`),
           name
         );
 
 chatName = name;
         $("nameModal").hidden = true;
 
-if (!$("chatPage").hidden === false) {
-          startChat();
-        } else {
-          $("status").textContent = `Connected as ${chatName}`;
+if (presenceRef) {
+          await update(presenceRef, {
+            chatName,
+            online: true,
+            lastActive: serverTimestamp()
+          });
         }
 
-if (!stopMessages) startChat();
+if ($("chatScreen").hidden) {
+          startChat();
+        } else {
+          $("connection").textContent = connected
+            ? `Connected as ${chatName}`
+            : "Offline · Reconnecting…";
+        }
       } catch (error) {
         console.error(error);
         $("nameError").textContent =
@@ -635,17 +1280,48 @@ if (!stopMessages) startChat();
     });
 
 $("editNameButton").addEventListener("click", () => {
-      showNameModal(true);
+      $("nameTitle").textContent = "Edit your chatting name";
+      $("chatNameInput").value = chatName;
+      $("cancelNameButton").hidden = false;
+      $("nameError").textContent = "";
+      $("nameModal").hidden = false;
     });
 
-$("logoutButton").addEventListener("click", () => {
-      signOut(auth);
+$("cancelNameButton").addEventListener("click", () => {
+      $("nameModal").hidden = true;
+    });
+
+$("usersButton").addEventListener("click", () => {
+      renderUsers();
+      $("usersModal").hidden = false;
+    });
+
+$("closeUsersButton").addEventListener("click", () => {
+      $("usersModal").hidden = true;
+    });
+
+$("closeInfoButton").addEventListener("click", () => {
+      $("infoModal").hidden = true;
+    });
+
+document.querySelectorAll(".modal").forEach(modal => {
+      modal.addEventListener("click", event => {
+        if (event.target === modal) {
+          modal.hidden = true;
+        }
+      });
+    });
+
+$("logoutButton").addEventListener("click", async () => {
+      await signOut(auth);
     });
 
 $("messageInput").addEventListener("input", () => {
-      $("messageInput").style.height = "52px";
-      $("messageInput").style.height =
-        Math.min($("messageInput").scrollHeight, 130) + "px";
+      const input = $("messageInput");
+
+input.style.height = "52px";
+      input.style.height =
+        Math.min(input.scrollHeight, 140) + "px";
 
 updateSendButton();
     });
@@ -655,12 +1331,20 @@ $("composer").addEventListener("submit", async event => {
 
 const text = $("messageInput").value.trim();
 
-if (!text || !currentUser || !chatName || !connected) return;
+if (
+        !currentUser ||
+        !chatName ||
+        !connected ||
+        !messagesLoaded ||
+        !text
+      ) {
+        return;
+      }
 
 $("sendButton").disabled = true;
 
 try {
-        await set(push(ref(db, "keeishChat/messages")), {
+        await set(push(ref(db, `${BASE}/messages`)), {
           uid: currentUser.uid,
           senderName: chatName,
           text,
@@ -672,47 +1356,61 @@ $("messageInput").value = "";
       } catch (error) {
         console.error(error);
         $("chatError").textContent =
-          "Message could not be sent. Check your database rules.";
+          "Message has been unsended ra.";
       }
 
 updateSendButton();
     });
 
-onAuthStateChanged(auth, async user => {
-      closeListeners();
+document.addEventListener("pointerdown", event => {
+      const overlay = document.querySelector(".unsend-overlay");
 
-currentUser = user;
-      chatName = "";
-      connected = false;
-      messagesLoaded = false;
+if (
+        overlay &&
+        !event.target.closest(".unsend-overlay") &&
+        !event.target.closest(".message")
+      ) {
+        closeUnsendOverlay();
+      }
+    });
+
+onAuthStateChanged(auth, async user => {
+      cleanup();
+      currentUser = user;
 
 if (!user) {
-        $("loginPage").hidden = false;
-        $("chatPage").hidden = true;
+        $("loginScreen").hidden = false;
+        $("chatScreen").hidden = true;
         $("nameModal").hidden = true;
         return;
       }
 
+$("password").value = "";
+
 try {
-        await loadChatName(user);
+        await loadChatName();
       } catch (error) {
         console.error(error);
-        $("nameError").textContent =
+
+$("nameError").textContent =
           "Could not load your chatting name. Check your database rules.";
-        showNameModal(false);
+
+$("cancelNameButton").hidden = true;
+        $("nameModal").hidden = false;
       }
     });
 
-try {
-      await setPersistence(auth, browserSessionPersistence);
-      $("loginButton").disabled = false;
-      $("loginButton").textContent = "Sign in";
-    } catch (error) {
-      console.error(error);
-      $("loginButton").textContent = "Firebase unavailable";
-      $("loginError").textContent =
-        "Firebase could not initialize.";
-    }
+setPersistence(auth, browserSessionPersistence)
+      .then(() => {
+        $("loginButton").disabled = false;
+        $("loginButton").textContent = "Sign in";
+      })
+      .catch(error => {
+        console.error(error);
+        $("loginButton").textContent = "Firebase unavailable";
+        $("loginError").textContent =
+          "Firebase could not initialize.";
+      });
   </script>
 </body>
 </html>
