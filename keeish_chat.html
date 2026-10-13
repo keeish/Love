@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1322">
+  <title>Keeish Chat</title>
+
+<style>
+    * { box-sizing: border-box; }
+
+body {
+      margin: 0;
+      min-height: 100dvh;
+      font-family: Arial, sans-serif;
+      color: #eef4ff;
+      background:
+        radial-gradient(circle at top left, #123441, transparent 45%),
+        #080e1a;
+    }
+
+button, input, textarea { font: inherit; }
+    button { border: 0; cursor: pointer; }
+    [hidden] { display: none !important; }
+
+.center {
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+
+.card {
+      width: min(100%, 430px);
+      padding: 30px;
+      border: 1px solid #293b54;
+      border-radius: 26px;
+      background: #111c2ded;
+      box-shadow: 0 25px 80px #0008;
+    }
+
+.logo {
+      width: 70px;
+      height: 70px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 20px;
+      border-radius: 22px;
+      background: #61e1c2;
+      color: #09231e;
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+.label {
+      color: #61e1c2;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+h1 {
+      margin: 18px 0 10px;
+      font-size: 36px;
+      line-height: 1.08;
+    }
+
+h2 {
+      margin: 0 0 8px;
+    }
+
+.description, .small {
+      color: #a9b7ca;
+      line-height: 1.6;
+    }
+
+label {
+      display: block;
+      margin: 18px 0 8px;
+      color: #c8d2e2;
+      font-size: 14px;
+    }
+
+input, textarea {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #34445d;
+      border-radius: 14px;
+      outline: none;
+      background: #0c1524;
+      color: white;
+      font-size: 16px;
+    }
+
+input:focus, textarea:focus {
+      border-color: #61e1c2;
+    }
+
+.primary {
+      width: 100%;
+      min-height: 52px;
+      margin-top: 23px;
+      border-radius: 14px;
+      background: #61e1c2;
+      color: #06251e;
+      font-weight: bold;
+    }
+
+button:disabled {
+      cursor: not-allowed;
+      opacity: .5;
+    }
+
+.error {
+      min-height: 22px;
+      margin: 13px 0 0;
+      color: #ffb1b1;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+.chat {
+      width: min(100%, 900px);
+      height: 100dvh;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      background: #0d1727;
+      border-inline: 1px solid #27384f;
+    }
+
+header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: max(16px, env(safe-area-inset-top)) 15px 16px;
+      background: #121f32;
+      border-bottom: 1px solid #293b54;
+    }
+
+.chat-logo {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: #61e1c2;
+      color: #09231e;
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+.heading {
+      flex: 1;
+      min-width: 0;
+    }
+
+.heading strong {
+      display: block;
+    }
+
+.status {
+      display: block;
+      margin-top: 4px;
+      color: #99aac0;
+      font-size: 12px;
+    }
+
+.header-button {
+      padding: 10px 11px;
+      border-radius: 10px;
+      background: #26364d;
+      color: white;
+      font-size: 12px;
+    }
+
+.room-info {
+      padding: 9px;
+      border-bottom: 1px solid #223249;
+      color: #9aaac0;
+      text-align: center;
+      font-size: 12px;
+    }
+
+#messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 14px;
+    }
+
+.empty {
+      padding: 50px 10px;
+      color: #9aaac0;
+      text-align: center;
+    }
+
+.message {
+      width: fit-content;
+      max-width: 86%;
+      margin-bottom: 13px;
+      padding: 11px 14px;
+      border-radius: 17px 17px 17px 5px;
+      background: #1b2b42;
+      overflow-wrap: anywhere;
+    }
+
+.message.mine {
+      margin-left: auto;
+      border-radius: 17px 17px 5px 17px;
+      background: #155044;
+    }
+
+.sender {
+      margin-bottom: 5px;
+      color: #8ce7d0;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+.message-text {
+      white-space: pre-wrap;
+      line-height: 1.5;
+    }
+
+.time {
+      margin-top: 6px;
+      color: #aec0d1;
+      text-align: right;
+      font-size: 10px;
+    }
+
+footer {
+      padding: 10px 13px max(13px, env(safe-area-inset-bottom));
+      background: #121f32;
+      border-top: 1px solid #293b54;
+    }
+
+form.composer {
+      display: flex;
+      align-items: flex-end;
+      gap: 9px;
+    }
+
+textarea {
+      min-height: 52px;
+      max-height: 130px;
+      resize: none;
+    }
+
+.send {
+      min-width: 68px;
+      height: 52px;
+      border-radius: 13px;
+      background: #61e1c2;
+      color: #06251e;
+      font-weight: bold;
+    }
+
+.modal {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: #0009;
+    }
+
+.modal .card {
+      box-shadow: 0 25px 80px #000;
+    }
+
+@media (max-width: 480px) {
+      .card { padding: 25px 21px; }
+      h1 { font-size: 33px; }
+      .message { max-width: 91%; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Login -->
+  <main id="loginPage" class="center">
+    <section class="card">
+      <div class="logo">k</div>
+      <div class="label">Keeish · Chat</div>
+
+<h1>Your people.<br>Your space.</h1>
+
+<p class="description">
+        Sign in with your existing account to join the conversation.
+      </p>
+
+<form id="loginForm">
+        <label for="email">Email address</label>
+        <input id="email" type="email" autocomplete="username"
+               placeholder="you@example.com" required>
+
+<label for="password">Password</label>
+        <input id="password" type="password"
+               autocomplete="current-password"
+               placeholder="Enter your password" required>
+
+<button id="loginButton" class="primary" disabled>
+          Loading Firebase…
+        </button>
+
+<p id="loginError" class="error"></p>
+      </form>
+
+<p class="small">
+        Use your existing Firebase account. No account creation is available here.
+      </p>
+    </section>
+  </main>
+
+<!-- Chat -->
+  <section id="chatPage" class="chat" hidden>
+    <header>
+      <div class="chat-logo">k</div>
+
+<div class="heading">
+        <strong>Keeish Chat</strong>
+        <span id="status" class="status">Connecting…</span>
+      </div>
+
+<button id="editNameButton" class="header-button">
+        Edit name
+      </button>
+
+<button id="logoutButton" class="header-button">
+        Logout
+      </button>
+    </header>
+
+<div class="room-info">Realtime shared chat</div>
+
+<div id="messages">
+      <div class="empty">Loading messages…</div>
+    </div>
+
+<footer>
+      <p id="chatError" class="error"></p>
+
+<form id="composer" class="composer">
+        <textarea id="messageInput" maxlength="2000"
+                  placeholder="Write a message…" required></textarea>
+        <button id="sendButton" class="send" disabled>Send</button>
+      </form>
+    </footer>
+  </section>
+
+<!-- Name modal -->
+  <div id="nameModal" class="modal" hidden>
+    <section class="card">
+      <h2 id="nameTitle">Choose your chatting name</h2>
+
+<p class="description">
+        This name will be visible to other people in the chat.
+      </p>
+
+<form id="nameForm">
+        <label for="chatName">Chatting name</label>
+        <input id="chatName" maxlength="30"
+               placeholder="Enter your name" required>
+
+<button id="saveNameButton" class="primary">
+          Save name
+        </button>
+
+<p id="nameError" class="error"></p>
+      </form>
+    </section>
+  </div>
+
+<script type="module">
+    import { initializeApp } from
+      "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+
+import {
+      getAuth,
+      setPersistence,
+      browserSessionPersistence,
+      signInWithEmailAndPassword,
+      onAuthStateChanged,
+      signOut
+    } from
+      "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+import {
+      getDatabase,
+      ref,
+      get,
+      set,
+      push,
+      query,
+      orderByChild,
+      limitToLast,
+      onValue,
+      serverTimestamp
+    } from
+      "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+
+const firebaseConfig = {
+      apiKey: "AIzaSyD1utosh7SoMcp8emH1KtjSN9qVcOVP4sE",
+      authDomain: "keeish.firebaseapp.com",
+      databaseURL:
+        "https://keeish-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "keeish",
+      storageBucket: "keeish.firebasestorage.app",
+      messagingSenderId: "757713727711",
+      appId: "1:757713727711:web:e41b3c86d350a49cdd396a",
+      measurementId: "G-SS35BP7JK9"
+    };
+
+const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getDatabase(app);
+
+const $ = id => document.getElementById(id);
+
+let currentUser = null;
+    let chatName = "";
+    let connected = false;
+    let messagesLoaded = false;
+    let stopMessages = null;
+    let stopConnection = null;
+
+function updateSendButton() {
+      $("sendButton").disabled =
+        !currentUser ||
+        !chatName ||
+        !connected ||
+        !messagesLoaded ||
+        !$("messageInput").value.trim();
+    }
+
+function showLoginError(error) {
+      console.error(error.code, error.message);
+
+const errors = {
+        "auth/invalid-credential": "Invalid email or password.",
+        "auth/wrong-password": "Incorrect password.",
+        "auth/user-not-found": "No account exists with this email.",
+        "auth/invalid-email": "Enter a valid email address.",
+        "auth/user-disabled": "This account has been disabled.",
+        "auth/too-many-requests": "Too many attempts. Try again later.",
+        "auth/network-request-failed": "Check your internet connection.",
+        "auth/operation-not-allowed":
+          "Email/password login is not enabled in Firebase.",
+        "auth/unauthorized-domain":
+          "This website domain is not authorized in Firebase."
+      };
+
+$("loginError").textContent =
+        errors[error.code] || "Login failed: " + error.code;
+    }
+
+function closeListeners() {
+      if (stopMessages) stopMessages();
+      if (stopConnection) stopConnection();
+
+stopMessages = null;
+      stopConnection = null;
+    }
+
+function showNameModal(editing = false) {
+      $("nameTitle").textContent = editing
+        ? "Edit your chatting name"
+        : "Choose your chatting name";
+
+$("chatName").value = chatName;
+      $("nameError").textContent = "";
+      $("nameModal").hidden = false;
+      $("chatName").focus();
+    }
+
+function renderMessages(snapshot) {
+      $("messages").innerHTML = "";
+
+if (!snapshot.exists()) {
+        $("messages").innerHTML =
+          '<div class="empty">No messages yet. Say hello!</div>';
+
+messagesLoaded = true;
+        updateSendButton();
+        return;
+      }
+
+snapshot.forEach(item => {
+        const message = item.val();
+        const mine = message.uid === currentUser.uid;
+
+const box = document.createElement("article");
+        box.className = mine ? "message mine" : "message";
+
+const sender = document.createElement("div");
+        sender.className = "sender";
+        sender.textContent = mine
+          ? "You"
+          : message.senderName || "Member";
+
+const body = document.createElement("div");
+        body.className = "message-text";
+        body.textContent = message.text;
+
+const time = document.createElement("div");
+        time.className = "time";
+
+const date = new Date(message.createdAt);
+        if (!isNaN(date.getTime())) {
+          time.textContent = date.toLocaleString([], {
+            month: "short",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+          });
+        }
+
+box.append(sender, body, time);
+        $("messages").appendChild(box);
+      });
+
+messagesLoaded = true;
+      $("messages").scrollTop = $("messages").scrollHeight;
+      updateSendButton();
+    }
+
+async function loadChatName(user) {
+      const nameRef = ref(db, `keeishChat/users/${user.uid}/chatName`);
+      const snapshot = await get(nameRef);
+
+if (snapshot.exists() && String(snapshot.val()).trim()) {
+        chatName = String(snapshot.val()).trim();
+        startChat();
+      } else {
+        showNameModal(false);
+      }
+    }
+
+function startChat() {
+      $("loginPage").hidden = true;
+      $("chatPage").hidden = false;
+      $("status").textContent = "Connecting…";
+
+stopConnection = onValue(
+        ref(db, ".info/connected"),
+        snapshot => {
+          connected = snapshot.val() === true;
+          $("status").textContent = connected
+            ? `Connected as ${chatName}`
+            : "Offline · Reconnecting…";
+
+updateSendButton();
+        }
+      );
+
+const messagesQuery = query(
+        ref(db, "keeishChat/messages"),
+        orderByChild("createdAt"),
+        limitToLast(100)
+      );
+
+stopMessages = onValue(
+        messagesQuery,
+        renderMessages,
+        error => {
+          console.error(error);
+          $("chatError").textContent =
+            "Cannot load messages. Check your database rules.";
+        }
+      );
+    }
+
+$("loginForm").addEventListener("submit", async event => {
+      event.preventDefault();
+
+$("loginButton").disabled = true;
+      $("loginButton").textContent = "Signing in…";
+      $("loginError").textContent = "";
+
+try {
+        await signInWithEmailAndPassword(
+          auth,
+          $("email").value.trim(),
+          $("password").value
+        );
+      } catch (error) {
+        showLoginError(error);
+      } finally {
+        $("loginButton").disabled = false;
+        $("loginButton").textContent = "Sign in";
+      }
+    });
+
+$("nameForm").addEventListener("submit", async event => {
+      event.preventDefault();
+
+const name = $("chatName").value.trim();
+
+if (name.length < 2 || name.length > 30) {
+        $("nameError").textContent =
+          "Name must contain 2 to 30 characters.";
+        return;
+      }
+
+$("saveNameButton").disabled = true;
+      $("nameError").textContent = "";
+
+try {
+        await set(
+          ref(db, `keeishChat/users/${currentUser.uid}/chatName`),
+          name
+        );
+
+chatName = name;
+        $("nameModal").hidden = true;
+
+if (!$("chatPage").hidden === false) {
+          startChat();
+        } else {
+          $("status").textContent = `Connected as ${chatName}`;
+        }
+
+if (!stopMessages) startChat();
+      } catch (error) {
+        console.error(error);
+        $("nameError").textContent =
+          "Could not save your name. Check your database rules.";
+      } finally {
+        $("saveNameButton").disabled = false;
+      }
+    });
+
+$("editNameButton").addEventListener("click", () => {
+      showNameModal(true);
+    });
+
+$("logoutButton").addEventListener("click", () => {
+      signOut(auth);
+    });
+
+$("messageInput").addEventListener("input", () => {
+      $("messageInput").style.height = "52px";
+      $("messageInput").style.height =
+        Math.min($("messageInput").scrollHeight, 130) + "px";
+
+updateSendButton();
+    });
+
+$("composer").addEventListener("submit", async event => {
+      event.preventDefault();
+
+const text = $("messageInput").value.trim();
+
+if (!text || !currentUser || !chatName || !connected) return;
+
+$("sendButton").disabled = true;
+
+try {
+        await set(push(ref(db, "keeishChat/messages")), {
+          uid: currentUser.uid,
+          senderName: chatName,
+          text,
+          createdAt: serverTimestamp()
+        });
+
+$("messageInput").value = "";
+        $("messageInput").style.height = "52px";
+      } catch (error) {
+        console.error(error);
+        $("chatError").textContent =
+          "Message could not be sent. Check your database rules.";
+      }
+
+updateSendButton();
+    });
+
+onAuthStateChanged(auth, async user => {
+      closeListeners();
+
+currentUser = user;
+      chatName = "";
+      connected = false;
+      messagesLoaded = false;
+
+if (!user) {
+        $("loginPage").hidden = false;
+        $("chatPage").hidden = true;
+        $("nameModal").hidden = true;
+        return;
+      }
+
+try {
+        await loadChatName(user);
+      } catch (error) {
+        console.error(error);
+        $("nameError").textContent =
+          "Could not load your chatting name. Check your database rules.";
+        showNameModal(false);
+      }
+    });
+
+try {
+      await setPersistence(auth, browserSessionPersistence);
+      $("loginButton").disabled = false;
+      $("loginButton").textContent = "Sign in";
+    } catch (error) {
+      console.error(error);
+      $("loginButton").textContent = "Firebase unavailable";
+      $("loginError").textContent =
+        "Firebase could not initialize.";
+    }
+  </script>
+</body>
+</html>
